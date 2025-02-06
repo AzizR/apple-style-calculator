@@ -1,0 +1,58 @@
+.censored {
+    position: absolute;
+    width: 230px;
+    height: 165px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(9px) !important;
+    background-color: rgba(0, 0, 0, .1);
+    margin: 322px 167px;
+    transform: rotate(-17deg);
+    z-index: -1;
+}
+
+.paper {
+    position: absolute;
+    width: 250px;
+    height: 350px;
+    margin: 300px 0 0 1100px;
+    padding: 20px;
+    background-color: #fff;
+    transform: rotate(10deg) !important;
+    color: rgb(5 84 167);
+    overflow-y: auto;
+    z-index: -1;
+}
+
+.animate__fadeInDownBig {
+    opacity: unset !important;
+}
+
+.highlight {
+    background-color: #ffff0080 !important;
+}
+
+.darkBtn {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: rotate3d(1, 1, 1, 45deg);
+}
+
+.darkBtn:focus {
+    outline: none;
+}
+
+.marker {
+    position: absolute;
+    right: 20px;
+}
+
+.marker input {
+    visibility: hidden;
+}

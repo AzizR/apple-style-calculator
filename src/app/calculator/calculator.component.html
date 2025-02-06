@@ -1,0 +1,14 @@
+<div
+  id="calculator"
+  [ngStyle]="{ top: curY + 'px', left: curX + 'px', 'z-index': curZIndex }"
+  (mousedown)="mousedown($event)"
+>
+  <div class="output-block">
+    <p class="output" [ngStyle]="{ 'font-size.px': fontSize }">{{ output }}</p>
+  </div>
+  <div class="controls">
+    <button *ngFor="let btn of buttons" (click)="displaySign(btn)">
+      {{ btn }}
+    </button>
+  </div>
+</div>

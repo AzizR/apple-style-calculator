@@ -1,0 +1,59 @@
+.extra-block {
+    position: absolute;
+    margin-top: 680px;
+    margin-left: 315px;
+    width: 240px;
+    height: 45px;
+    padding: 50px 10px;
+    /* border: 1px solid #000; */
+}
+
+.extra-block:hover #extra{
+    transition: .2s ease-in-out;
+    transform: scale(1.1);
+}
+
+#extra {
+    width: 240px;
+    height: 45px;
+    background-color: rgb(238 114 0);
+    border:1px solid rgb(255, 146, 44);
+    border-radius: 10px;
+    box-shadow: -20px 20px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    backdrop-filter: blur(100px);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transform: scale(1);
+    transition: .3s ease-in-out;
+}
+
+.controls button:first {
+    line-height: -5px;
+}
+
+.controls button {
+    border-radius: 0;
+    border: none;
+    order: 4;
+    flex-grow: 4;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    background-color: rgb(239 115 0);
+    color: #fff;
+    font-size: 19px;
+}
+
+.controls button:hover {
+    background-color: rgb(243, 132, 28);
+    color: #fff;
+}
+
+.controls button:active {
+    background-color: rgb(179, 93, 13);
+    color: #fff;
+}
+
+button:focus {
+    outline: none;
+}

@@ -1,0 +1,20 @@
+<div class="extra-block">
+  <!-- style="transform: perspective(1000px) rotateX({{ pageY }}deg) rotateY({{
+    pageX
+  }}deg) scale3d(1, 1, 1);" -->
+  <div id="extra">
+    <div class="controls">
+      <ng-container *ngFor="let btn of extraButtons">
+        <button
+          *ngIf="btn != 'pow'; else power_content"
+          (click)="calculate(btn)"
+        >
+          {{ btn }}
+        </button>
+        <ng-template #power_content>
+          <button (click)="calculate(btn)">x<sup>y</sup></button>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+</div>
