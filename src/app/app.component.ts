@@ -5,6 +5,7 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { ExtraFunctionsComponent } from './extra-functions/extra-functions.component';
 import { HighlightDirective } from './highlight.directive';
 import { CommonModule } from '@angular/common';
+import { MathFunctions } from './lib/definitions';
 
 @Component({
   selector: 'app-root',
@@ -21,24 +22,24 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'Calculator';
-  history: string[] = [];
+  calculationsHistory: string[] = [];
   check: any = [];
   extraOp: any;
   count: number = 0;
 
   constructor(private el: ElementRef) {
-    this.history.push('History: ');
+    this.calculationsHistory.push('Calculations History: ');
   }
 
   updateCheckValue(val: any) {
     console.log(val);
   }
 
-  addToHistory(entry: string) {
-    this.history.push(entry);
+  addToHistory(entry: string | string[]) {
+    this.calculationsHistory.push(entry);
   }
 
-  onGetResult(e: any) {
-    this.extraOp = [e, this.count++];
+  onGetResult(mathFunction: MathFunctions) {
+    this.extraOp = [mathFunction, this.count++];
   }
 }

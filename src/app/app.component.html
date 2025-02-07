@@ -12,15 +12,15 @@
   >
     <p
       class="animate__animated animate__fadeIn"
-      *ngFor="let h of history; let index = index"
+      *ngFor="let calculation of calculationsHistory; let index = index"
       appHighlight
       [class.highlight]="check[index]"
     >
-      {{ h }}
-      <label attr.for="{{ index }}" class="marker"
+      {{ calculation }}
+      <label [attr.for]="index" class="marker"
         ><input
           type="checkbox"
-          id="{{ index }}"
+          [id]="index"
           [(ngModel)]="check[index]"
           (ngModelChange)="updateCheckValue(check[index])"
         />&#9998;</label

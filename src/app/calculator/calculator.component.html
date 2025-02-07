@@ -7,8 +7,11 @@
     <p class="output" [ngStyle]="{ 'font-size.px': fontSize }">{{ output }}</p>
   </div>
   <div class="controls">
-    <button *ngFor="let btn of buttons" (click)="displaySign(btn)">
-      {{ btn }}
+    <button
+      *ngFor="let buttonName of buttons"
+      (click)="displaySign(buttonName)"
+    >
+      {{ buttonName }}
     </button>
   </div>
 </div>

@@ -9,6 +9,7 @@ import {
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
+import { MathFunctions } from '../lib/definitions';
 
 @Component({
   selector: 'app-calculator',
@@ -17,6 +18,8 @@ import {
   styleUrl: './calculator.component.scss',
 })
 export class CalculatorComponent {
+  pi = 3.141592653589793;
+  e = 2.718281828459045;
   allowedKeys = [
     '0',
     '1',
@@ -38,7 +41,7 @@ export class CalculatorComponent {
     'Clear',
     '.',
   ];
-  buttons: any = [
+  buttons = [
     'AC',
     '+/-',
     '%',
@@ -60,37 +63,81 @@ export class CalculatorComponent {
     '=',
   ];
   output: any = 0;
-  operations: any = ['%', 'x', '÷', '-', '+', 'pow', 'faktorial'];
+  operations: string[] = ['%', 'x', '÷', '-', '+', 'pow', 'x!'];
   operation: any;
   operands: any = [];
   newOperand: boolean = false;
   editable: boolean = true;
   fontSize: number = 42;
-  history: any = [];
+  history: string[] = [];
   isResult: boolean = false;
 
-  @Input() extraOp: any = 0;
-  @Output() addToHistory: EventEmitter<any> = new EventEmitter();
+  #extraOp: [MathFunctions, number] | undefined;
+  @Input()
+  set extraOp(extraOp: [MathFunctions, number] | undefined) {
+    this.#extraOp = extraOp;
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['extraOp'].currentValue) {
-      if (changes['extraOp'].currentValue[0] == 'faktorial') {
-        if (this.output == 0) return;
-        this.output = this.calculateFuctorial(this.output);
-        return;
-      }
-      if (changes['extraOp'].currentValue[0] == '√') {
-        if (this.output == 0) return;
-        this.output = this.calculateSquareRoot();
-        return;
-      }
-      if (changes['extraOp'].currentValue[0] == 'pow') {
-        this.displaySign('pow');
-        return;
-      }
-      this.displaySign(changes['extraOp'].currentValue[0]);
+    if (!extraOp) {
+      return;
     }
+
+    console.log(extraOp);
+
+    if (extraOp[0] == 'x!') {
+      if (this.output == 0) return;
+      this.output = this.calculateFuctorial(this.output);
+      return;
+    }
+
+    if (extraOp[0] == '√') {
+      if (this.output == 0) return;
+      this.output = this.calculateSquareRoot();
+      return;
+    }
+
+    if (extraOp[0] == 'pow') {
+      this.displaySign('pow');
+      return;
+    }
+
+    if (extraOp[0] == 'π') {
+      this.displaySign(this.pi);
+      return;
+    }
+
+    if (extraOp[0] == 'e') {
+      this.displaySign(this.e);
+      return;
+    }
+
+    this.displaySign(extraOp[0]);
   }
+
+  get extraOp() {
+    return this.#extraOp;
+  }
+
+  @Output() addToHistory: EventEmitter<string> = new EventEmitter();
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes['extraOp'].currentValue) {
+  //     if (changes['extraOp'].currentValue[0] == 'x!') {
+  //       if (this.output == 0) return;
+  //       this.output = this.calculateFuctorial(this.output);
+  //       return;
+  //     }
+  //     if (changes['extraOp'].currentValue[0] == '√') {
+  //       if (this.output == 0) return;
+  //       this.output = this.calculateSquareRoot();
+  //       return;
+  //     }
+  //     if (changes['extraOp'].currentValue[0] == 'pow') {
+  //       this.displaySign('pow');
+  //       return;
+  //     }
+  //     this.displaySign(changes['extraOp'].currentValue[0]);
+  //   }
+  // }
 
   /* Keyboard Listener */
   @HostListener('document:keydown', ['$event'])
@@ -122,7 +169,7 @@ export class CalculatorComponent {
     }
   }
 
-  deleteLastSign(output: any) {
+  deleteLastSign(output: string) {
     this.output = this.output + '';
     if (
       this.output.length == 1 ||
@@ -139,6 +186,8 @@ export class CalculatorComponent {
 
   /* LOGIC */
   displaySign(num: any) {
+    console.log('here', num);
+
     if (!this.operation) {
       this.operation = [];
     }
@@ -161,6 +210,7 @@ export class CalculatorComponent {
     ) {
       return;
     }
+
     switch (num) {
       case 'AC':
         this.clear();
@@ -207,11 +257,10 @@ export class CalculatorComponent {
   }
 
   clear() {
-    // debugger
     this.fontSize = 42;
     this.operands = [];
     this.output = 0;
-    this.operation = undefined;
+    this.operation = [];
     this.editable = true;
     this.isResult = false;
   }
