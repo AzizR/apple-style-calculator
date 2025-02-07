@@ -20,7 +20,7 @@ export class ExtraFunctionsComponent {
 
   pageX = 0;
   pageY = 0;
-  @Output() getResult = new EventEmitter<number | string>();
+  @Output() getResult = new EventEmitter<MathFunctions>();
 
   onMouseMove(event: MouseEvent) {
     let centerX = 450;

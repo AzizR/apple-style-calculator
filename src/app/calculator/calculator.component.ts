@@ -69,7 +69,7 @@ export class CalculatorComponent {
   newOperand: boolean = false;
   editable: boolean = true;
   fontSize: number = 42;
-  history: string[] = [];
+  history: any = [];
   isResult: boolean = false;
 
   #extraOp: [MathFunctions, number] | undefined;

@@ -22,7 +22,7 @@ import { MathFunctions } from './lib/definitions';
 })
 export class AppComponent {
   title = 'Calculator';
-  calculationsHistory: string[] = [];
+  calculationsHistory: any = [];
   check: any = [];
   extraOp: any;
   count: number = 0;
